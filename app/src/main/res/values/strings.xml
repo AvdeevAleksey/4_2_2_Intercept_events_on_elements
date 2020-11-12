@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Перехват событий на элементах</string>
+    <string name="del_button">Удалить</string>
 </resources>

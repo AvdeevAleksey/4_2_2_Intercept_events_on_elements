@@ -1,19 +1,20 @@
 package ru.avdeev.android.a4_2_2_intercept_events_on_elements;
 
 import android.graphics.drawable.Drawable;
+import android.widget.Button;
 
 public class ItemData {
 
     private Drawable image;
     private String title;
     private String subtitle;
-    private boolean checked;
+    private Button button;
 
-    public ItemData(Drawable image, String title, String subtitle, boolean checked) {
+    public ItemData(Drawable image, String title, String subtitle, Button button) {
         this.image = image;
         this.title = title;
         this.subtitle = subtitle;
-        this.checked = checked;
+        this.button = button;
     }
 
     public Drawable getImage() {
@@ -28,11 +29,7 @@ public class ItemData {
         return subtitle;
     }
 
-    public boolean isChecked() {
-        return checked;
-    }
-
-    public void setChecked(boolean checked) {
-        this.checked = checked;
+    public Button getButton() {
+        return button;
     }
 }

@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Random random = new Random();
     private ItemsDataAdapter adapter;
     private List<Drawable> images = new ArrayList<>();
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +48,11 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ItemsDataAdapter(this, null);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showItemData(position);
-            }
-        });
-
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                adapter.removeItem(position);
+                showItemData(position);
+
                 return true;
             }
         });
@@ -79,17 +75,14 @@ public class MainActivity extends AppCompatActivity {
         adapter.addItem(new ItemData(
                 images.get(random.nextInt(images.size())),
                 "Beware of bugs in the above code; \nI have only proved it correct, not tried it." + adapter.getCount(),
-                "To iterate is human, to recurse divine.",
-                random.nextBoolean()));
+                "To iterate is human, to recurse divine.", button));
     }
 
-    // Покажем сообщение с данными
     private void showItemData(int position) {
         ItemData itemData = adapter.getItem(position);
         Toast.makeText(MainActivity.this,
                 "Title: " + itemData.getTitle() + "\n" +
-                        "Subtitle: " + itemData.getSubtitle() + "\n" +
-                        "Checked: " + itemData.isChecked(),
+                        "Subtitle: " + itemData.getSubtitle(),
                 Toast.LENGTH_SHORT).show();
     }
 }
