@@ -60,7 +60,7 @@ public class ItemsDataAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null) {
             view = inflater.inflate(R.layout.item_list_view, parent, false);
@@ -76,7 +76,13 @@ public class ItemsDataAdapter extends BaseAdapter {
         image.setImageDrawable(itemData.getImage());
         title.setText(itemData.getTitle());
         subtitle.setText(itemData.getSubtitle());
-        button.setOnClickListener((View.OnClickListener) itemData.getButton());
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                items.remove(position);
+                notifyDataSetChanged();
+            }
+        });
         button.setTag(position);
 
         return view;
