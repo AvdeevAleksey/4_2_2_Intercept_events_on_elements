@@ -76,6 +76,8 @@ public class ItemsDataAdapter extends BaseAdapter {
         image.setImageDrawable(itemData.getImage());
         title.setText(itemData.getTitle());
         subtitle.setText(itemData.getSubtitle());
+        button.setOnClickListener((View.OnClickListener) itemData.getButton());
+        button.setTag(position);
 
         return view;
     }
